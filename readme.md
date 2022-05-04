@@ -1,8 +1,11 @@
 # Starter template for quicks builds
 
+<img src="src/assets/images/preview.jpg" alt="preview" width="33%" height="auto">
+
 _Revision 0.0.2 from 2022.05.04_
 
 > Starter template for quicks builds, witch use Gulp, Dart SASS, PostCSS, Rollup and Imagemin.
+
 
 ---
 
