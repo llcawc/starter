@@ -1,6 +1,6 @@
 # Starter template for quicks builds
 
-<img src="src/assets/images/preview.jpg" alt="preview" width="33%" height="auto">
+<a href="https://github.com/llcawc/starter"><img src="src/assets/images/preview.jpg" alt="preview" width="33%" height="auto"></a>
 
 _Revision 0.0.2 from 2022.05.04_
 
