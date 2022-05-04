@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <meta property="og:image" content="assets/images/preview.webp">
+  <link rel="preload" as="style" href="assets/css/fonts.min.css"/>
+	<link rel="stylesheet" href="assets/css/fonts.min.css" media="print" onload="this.media='all'"/>
   <link rel="stylesheet" href="assets/css/main.min.css">
   <title>Starter</title>
 </head>
@@ -12,26 +15,31 @@
 <body>
   <header class="header">
     <div class="container">
-      <h1>Starter Template</h1>
+      <h1><i class="bi bi-house"></i> Starter Template</h1>
+      <nav class="nav">
+        <ul>
+          <li><a href="index.html"><span class="active">Home</span></a></li>
+          <li>•</li>
+          <li><a href="post.html"><span>Post</span></a></li>
+          <li>•</li>
+          <li><a href="err404.html"><span>Error</span></a></li>
+        </ul>
+      </nav>
     </div>
-    <nav class="nav">
-      <ul>
-        <li><a href="index.html"><span class="active">Home</span></a></li>
-        <li>•</li>
-        <li><a href="post.html"><span>Post</span></a></li>
-        <li>•</li>
-        <li><a href="err404.html"><span>Error</span></a></li>
-      </ul>
-    </nav>
   </header>
   <main class="main container">
+    <h2>Guten Tag, Leute! Hallo Welt!</h2>
     <article class="abzac">
-      <h2>Guten Tag, Leute! Hallo Welt!</h2>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam rerum placeat temporibus aspernatur. Tempora, necessitatibus sapiente cupiditate obcaecati magnam alias.</p>
       <blockquote>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis, cum at delectus praesentium officia dicta doloremque aut quod optio illo.</blockquote>
       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolor quaerat laudantium alias debitis explicabo, officia adipisci expedita deleniti ab ea corporis commodi facilis necessitatibus itaque tempore dolore vero soluta rem ipsum eaque odit id labore et. Rerum vel odit voluptatum impedit adipisci aliquam, dolore incidunt asperiores voluptas! Nobis, architecto! Veniam! </p>
-      <div class="go"><a href="post.html">Lesen Sie weiter ...</a></div>
+      <p class="mb-0">Run <code>npm</code> command:</p>
+      <ul class="mb-0 ms-sm-3">
+        <li>for development: <code>>> npm run dev</code></li>
+        <li>for build: <code>>> npm run build</code></li>
+      </ul>
     </article>
+    <div class="go"><a href="post.html">Lesen Sie weiter ...</a></div>
   </main>
   <footer class=" footer container">
     <hr>

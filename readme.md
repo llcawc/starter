@@ -1,6 +1,6 @@
 # Starter template for quicks builds
 
-_Revision 0.0.1 from 2022.02.12_
+_Revision 0.0.2 from 2022.05.04_
 
 > Starter template for quicks builds, witch use Gulp, Dart SASS, PostCSS, Rollup and Imagemin.
 

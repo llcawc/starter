@@ -1,4 +1,5 @@
 // gulpfile.js
+// starter template v0.0.2, from pasmurno by llcawc, https://github.com/llcawc
 
 // variables & path
 const baseDir = 'src' // Base directory path without «/» at the end
@@ -10,12 +11,13 @@ let paths = {
     dest: distDir + '/assets/js/main.min.js',
   },
   images: {
-    webp: baseDir + '/assets/images/**/*.{jpg,png,JPG,PNG}',
-    svg: baseDir + '/assets/images/**/*.{svg,SVG}',
+    img: baseDir + '/assets/images/**/*.gif',
+    webp: baseDir + '/assets/images/**/*.{jpg,png}',
+    svg: baseDir + '/assets/images/**/*.svg',
     dest: distDir,
   },
   copy: {
-    src: [ baseDir + '/assets/fonts/*.*', ],
+    src: [ baseDir + '/assets/fonts/**/*.*', ],
     dest: distDir,
   },
   del: {
@@ -24,7 +26,7 @@ let paths = {
   styles: {
     src: [
       baseDir + '/assets/sass/main.*',
-      // baseDir + '/assets/sass/fonts.*',
+      baseDir + '/assets/sass/fonts.*',
     ],
     dest: distDir + '/assets/css',
   },
@@ -32,10 +34,10 @@ let paths = {
     content: [
       `${baseDir}/**/*.html`,
       `${baseDir}/assets/scripts/**/*.js`,
-      `${baseDir}/assets/sass/_reboot.scss`,
-      // 'node_modules/bootstrap/scss/_reboot.scss',
-      // 'node_modules/bootstrap/js/dist/dom/*.js',
-      // 'node_modules/bootstrap/js/dist/{base-component,button}.js',
+      // `${baseDir}/assets/sass/_reboot.scss`,
+      'node_modules/bootstrap/scss/_reboot.scss',
+      'node_modules/bootstrap/js/dist/dom/*.js',
+      'node_modules/bootstrap/js/dist/{base-component,button}.js',
     ],
     safelist: {
       // standart: ["selectorname"],
@@ -153,6 +155,12 @@ function styles() {
   }
 }
 
+// images task
+function makeimg() {
+  return src(paths.images.img, { base: baseDir})
+  .pipe(imagemin({ verbose: 'true' }))
+  .pipe(dest(paths.images.dest))
+}
 // images webp task
 function makewebp() {
   return src(paths.images.webp, { base: baseDir})
@@ -190,7 +198,7 @@ function watchstart() {
 }
 
 export { html, clean, assetscopy, styles, scripts }
-export let images = series(makesvg, makewebp)
+export let images = series(makeimg, makesvg, makewebp)
 export let assets = series(assetscopy, html, styles, scripts)
 export let serve = parallel(browserSync, watchstart)
 export let dev = series(clean, images, assets, serve)
