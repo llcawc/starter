@@ -63,14 +63,15 @@ let paths = {
 }
 
 // html assembly task
+// prettier-ignore
 function assemble() {
   const plagin = env.BUILD === 'production'
     ? htmlmin({ removeComments: true, collapseWhitespace: true })
     : prettier({ parser: 'html' })
-    return src(baseDir + '/*.{njk,htm,html}', { base: baseDir })
-      .pipe(nunjucksCompile().on('Error', (err) => console.log(err)))
-      .pipe(plagin)
-      .pipe(dest(distDir))
+  return src(baseDir + '/*.{njk,htm,html}', { base: baseDir })
+    .pipe(nunjucksCompile().on('Error', (err) => console.log(err)))
+    .pipe(plagin)
+    .pipe(dest(distDir))
 }
 
 // scripts task
@@ -98,7 +99,7 @@ async function scripts() {
 function inlinescripts() {
   return src(distDir + '/**/*.html', { base: distDir })
     .pipe(
-      replace(/<script src="assets\/js\/main.min.js"><\/script>/, () => {
+      replace(/<script defer="defer" src="\/assets\/js\/main.min.js"><\/script>/, () => {
         const script = fs.readFileSync(distDir + '/assets/js/main.min.js', 'utf8')
         return '<script>' + script + '</script>'
       })
@@ -125,7 +126,7 @@ function styles() {
 function inlinestyles() {
   return src(distDir + '/**/*.html', { base: distDir })
     .pipe(
-      replace(/<link rel="stylesheet" href="assets\/css\/main.min.css">/, () => {
+      replace(/<link rel="stylesheet" href="\/assets\/css\/main.min.css">/, () => {
         const style = fs.readFileSync(distDir + '/assets/css/main.min.css', 'utf8')
         return '<style>' + style + '</style>'
       })
@@ -167,7 +168,9 @@ function copy() {
 
 // bootstrap icons font copy task
 function bifont() {
-  return src(baseDir + '/libs/bootstrap-icons/font/fonts/*.woff2', { encoding: false }).pipe(rename({ basename: 'bi-font' })).pipe(dest(baseDir + '/assets/fonts/biFont'))
+  return src(baseDir + '/libs/bootstrap-icons/font/fonts/*.woff2', { encoding: false })
+    .pipe(rename({ basename: 'bi-font' }))
+    .pipe(dest(baseDir + '/assets/fonts/biFont'))
 }
 
 // watch
