@@ -1,0 +1,25 @@
+{% extends "layouts/main.njk" %}
+{% set title = 'Post' %}
+{% set headerText = 'Beautiful Post' %}
+{% set metaDescription = 'Сайт в разработке. Приходите потом, позже.' %}
+{% set bgImg = "bg-[url('/assets/images/burg.jpg')]" %}
+{# --- #}
+
+{% block main %}
+
+<main class="container mx-auto px-3 pt-12 pb-6 flex-grow">
+  <article class="columns-auto md:columns-2 xl:columns-3 mb-8">
+    <h3>Ingardium Leviosso</h3>
+    <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, natus exercitationem, enim adipisci ad voluptatibus porro iste eaque optio, recusandae facilis excepturi magnam voluptatum. Sed veritatis a rem molestiae, nemo amet! Dignissimos, esse ad cumque quod nisi sequi adipisci possimus? Pariatur voluptates optio inventore ab ut eum delectus illum harum.</p>
+    <img class="mb-4 w-full h-40 object-cover sepia" src="assets/images/burg.jpg" width="1200" height="800" alt="burg" loading="lazy">
+    <p class="mb-4">Aliquam ex earum, quisquam, cupiditate adipisci iste obcaecati dicta iusto odio exercitationem incidunt at deserunt dolores architecto nostrum dolore? Minus necessitatibus non deleniti esse, ducimus nobis culpa nostrum, ipsum fugiat omnis quae tempora obcaecati! Sapiente iste distinctio, eum exercitationem minima assumenda error! Neque architecto temporibus, necessitatibus deserunt a corporis, nesciunt, quaerat fugit optio ea nulla delectus minima ut nisi doloribus. Placeat, maxime modi. Libero odio exercitationem similique, beatae animi nostrum?</p>
+    <h3 class="inline-block">Petrifikus Totales</h3>
+    <p class="mb-4">Explicabo, aliquid. Quisquam iure officia illum cum cumque ex ullam quasi maxime, nostrum unde eaque totam aperiam dolorum. Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minus porro eveniet eos beatae explicabo! Aspernatur nobis quod dolor aliquam!</p>
+    <p>Explicabo, aliquid. Quisquam iure officia illum cum cumque ex ullam quasi maxime, nostrum unde eaque totam aperiam dolorum. Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur.</p>
+  </article>
+  <div class="text-left">
+    <a href="/">... back to home</a>
+  </div>
+</main>
+
+{% endblock %}

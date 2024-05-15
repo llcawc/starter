@@ -1,0 +1,51 @@
+{% set pages = {
+'Home': '/',
+'Post': '/post.html',
+'Waves': '/waves.html',
+'Error404': '/404.html'
+} %}
+{# --- #}
+<header class="relative flex min-h-52 items-center overflow-hidden {{bgImg}} bg-cover bg-[50%] p-0 sm:min-h-64 md:min-h-[25rem]">
+  <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-indigo-950/70 via-black/60 to-indigo-950/70"></div>
+  <div class="container relative mx-auto px-3 pb-4">
+    <h1 class="mb-4 text-center text-white drop-shadow-hx">
+      {%if title == 'Home'%}
+      <i class="bi bi-house"></i>
+      {% endif %}
+      {%if title == 'Post'%}
+      <i class="bi bi-pencil"></i>
+      {% endif %}
+      {%if title == 'Waves'%}
+      <i class="bi bi-wind"></i>
+      {% endif %}
+      {{headerText}}
+    </h1>
+    <nav class="container mx-auto px-3 font-bold text-white">
+      <ul class="flex justify-center gap-4">
+        {% for page, url in pages %}
+        <li>
+          <a class="text-white hover:text-accent uppercase
+          {%if title == page%}
+          underline decoration-accent decoration-4 underline-offset-4
+          {% endif %}" href="{{ url }}">{{ page }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  <div class="absolute bottom-0 z-10 w-full">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 40" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"></path>
+      </defs>
+      <g class="moving-waves">
+        <use xlink:href="#gentle-wave" x="48" y="-1"></use>
+        <use xlink:href="#gentle-wave" x="48" y="3"></use>
+        <use xlink:href="#gentle-wave" x="48" y="5"></use>
+        <use xlink:href="#gentle-wave" x="48" y="8"></use>
+        <use xlink:href="#gentle-wave" x="48" y="13"></use>
+        <use xlink:href="#gentle-wave" x="48" y="16"></use>
+      </g>
+    </svg>
+  </div>
+</header>

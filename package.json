@@ -1,0 +1,54 @@
+{
+  "name": "starter",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "pasmurno by llcawc",
+  "homepage": "https://github.com/llcawc",
+  "description": "starter template / boilerplate / osp 24.05.15",
+  "type": "module",
+  "scripts": {
+    "dev": "gulp dev",
+    "inline": "gulp inline",
+    "build": "cross-env BUILD=production gulp build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "autoprefixer": "^10.4.19",
+    "cross-env": "^7.0.3",
+    "del": "^7.1.0",
+    "gulp": "^5.0.0",
+    "gulp-changed": "^5.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^9.1.0",
+    "gulp-nunjucks": "^6.0.0",
+    "gulp-postcss": "^10.0.0",
+    "gulp-prettier": "^6.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.4",
+    "nunjucks": "^3.2.4",
+    "postcss": "^8.4.38",
+    "postcss-csso": "^6.0.1",
+    "postcss-import": "^16.1.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "rollup": "^4.17.2",
+    "tailwindcss": "^3.4.3",
+    "tslib": "^2.6.2"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "bootstrap-icons": "^1.11.3"
+  },
+  "browserslist": [
+    ">= 0.5%",
+    "last 2 major versions",
+    "not dead"
+  ]
+}

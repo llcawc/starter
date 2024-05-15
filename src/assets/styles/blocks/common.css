@@ -1,0 +1,44 @@
+/* common.css */
+
+@layer base {
+  :root {
+    --font-family-sans: 'ps-Inter', sans-serif;
+    --font-family-mono: 'ps-JetBrainsMono', monospace;
+    --accent: 37 99 235; /* blue-600 */
+    --light: 156 163 175; /* gray-400 */
+    --dark: 17 24 39; /* gray-900 */
+    --white: 255 255 255; /* white color */
+  }
+  *:focus-visible {
+    @apply rounded outline outline-2 outline-offset-2 outline-accent/80;
+  }
+  body {
+    font-family: var(--font-family-sans);
+    @apply relative min-w-80 overflow-x-hidden text-dark bg-white dark:text-light dark:bg-dark;
+  }
+  code {
+    @apply text-red-700 dark:text-red-400 text-opacity-90;
+    font-family: var(--font-family-mono);
+  }
+  a {
+    @apply text-accent hover:text-accent/60 transition duration-250;
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+    background: linear-gradient(90deg, #2176ff 25%, #7a69ea 50%, #cc69ea 75%, #98b1d6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h1 {
+    @apply text-4xl mb-4;
+  }
+  h2 {
+    @apply text-3xl mb-4;
+  }
+  h3 {
+    @apply text-2xl mb-3;
+  }
+}
