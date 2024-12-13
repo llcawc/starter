@@ -4,16 +4,15 @@
 import fs from 'node:fs'
 import { env } from 'node:process'
 import gulp from 'gulp'
-const { src, dest, parallel, series, watch } = gulp
+const { src, dest, series, watch } = gulp
 import { nunjucksCompile } from 'gulp-nunjucks' // About nunjucks: https://mozilla.github.io/nunjucks/
 import htmlmin from 'gulp-htmlmin'
-import prettier from 'gulp-prettier'
 import tailwindcss from 'tailwindcss'
 import tailwindNesting from 'tailwindcss/nesting/index.js'
 import postcss from 'gulp-postcss'
+import cssnano from 'cssnano'
 import postcssImport from 'postcss-import'
 import autoprefixer from 'autoprefixer'
-import csso from 'postcss-csso'
 import { rollup } from 'rollup'
 import { babel } from '@rollup/plugin-babel'
 import json from '@rollup/plugin-json'
@@ -21,15 +20,15 @@ import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
 import terser from '@rollup/plugin-terser'
-import imagemin, { gifsicle, mozjpeg, optipng, svgo } from 'gulp-imagemin'
-import changed from 'gulp-changed'
 import replace from 'gulp-replace'
-import rename from 'gulp-rename'
 import { deleteAsync as del } from 'del'
+import rename from './gulp/gulp-ren.js'
+import imagemin from './gulp/gulp-img.js'
 
 // variables & path
 const baseDir = 'src'
 const distDir = 'dist'
+
 let paths = {
   scripts: {
     src: baseDir + '/assets/ts/main.ts',
@@ -41,7 +40,7 @@ let paths = {
     dest: distDir + '/assets/css',
   },
   images: {
-    src: baseDir + '/assets/images/**/*.{gif,jpg,png,svg}',
+    src: [baseDir + '/assets/images/**/*.*'],
     dest: distDir,
   },
   // prettier-ignore
@@ -63,15 +62,17 @@ let paths = {
 }
 
 // html assembly task
-// prettier-ignore
 function assemble() {
-  const plagin = env.BUILD === 'production'
-    ? htmlmin({ removeComments: true, collapseWhitespace: true })
-    : prettier({ parser: 'html' })
-  return src(baseDir + '/*.{njk,htm,html}', { base: baseDir })
-    .pipe(nunjucksCompile().on('Error', (err) => console.log(err)))
-    .pipe(plagin)
-    .pipe(dest(distDir))
+  if (env.BUILD === 'production') {
+    return src(baseDir + '/*.{njk,htm,html}', { base: baseDir })
+      .pipe(nunjucksCompile().on('Error', (err) => console.log(err)))
+      .pipe(htmlmin({ removeComments: true, collapseWhitespace: true }))
+      .pipe(dest(distDir))
+  } else {
+    return src(baseDir + '/*.{njk,htm,html}', { base: baseDir })
+      .pipe(nunjucksCompile().on('Error', (err) => console.log(err)))
+      .pipe(dest(distDir))
+  }
 }
 
 // scripts task
@@ -79,7 +80,14 @@ async function scripts() {
   const bundle = await rollup({
     input: paths.scripts.src,
     plugins: [
-      typescript({ compilerOptions: { lib: ['ES2020', 'DOM', 'DOM.Iterable'], target: 'ES2020', resolveJsonModule: true } }),
+      typescript({
+        compilerOptions: {
+          rootDir: './src/assets/ts',
+          lib: ['ES2020', 'DOM', 'DOM.Iterable'],
+          target: 'ES2020',
+          resolveJsonModule: true,
+        },
+      }),
       resolve(),
       commonjs({ include: 'node_modules/**' }),
       babel({ babelHelpers: 'bundled' }),
@@ -111,14 +119,22 @@ function inlinescripts() {
 function styles() {
   if (env.BUILD === 'production') {
     return src(paths.styles.src)
-      .pipe(postcss([postcssImport, tailwindNesting, tailwindcss, autoprefixer, csso({ comments: false })]))
+      .pipe(
+        postcss([
+          postcssImport,
+          tailwindNesting,
+          tailwindcss,
+          autoprefixer,
+          cssnano({ preset: 'default', comments: false }),
+        ])
+      )
       .pipe(rename({ suffix: '.min', extname: '.css' }))
       .pipe(dest(paths.styles.dest))
   } else {
-    return src(paths.styles.src, { sourcemaps: true })
+    return src(paths.styles.src, env.BUILD === 'production' ? {} : { sourcemaps: true })
       .pipe(postcss([postcssImport, tailwindNesting, tailwindcss]))
       .pipe(rename({ suffix: '.min', extname: '.css' }))
-      .pipe(dest(paths.styles.dest, { sourcemaps: '.' }))
+      .pipe(dest(paths.styles.dest, env.BUILD === 'production' ? {} : { sourcemaps: '.' }))
   }
 }
 
@@ -136,20 +152,7 @@ function inlinestyles() {
 
 // images task
 function images() {
-  return src(paths.images.src, { base: baseDir, encoding: false })
-    .pipe(changed(paths.images.dest))
-    .pipe(
-      imagemin(
-        [
-          gifsicle({ interlaced: true }),
-          mozjpeg({ quality: 75, progressive: true }),
-          optipng({ optimizationLevel: 5 }),
-          svgo({ plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }] }),
-        ],
-        { verbose: true }
-      )
-    )
-    .pipe(dest(paths.images.dest))
+  return src(paths.images.src, { base: baseDir, encoding: false }).pipe(imagemin()).pipe(dest(paths.images.dest))
 }
 
 // clean task
@@ -175,14 +178,14 @@ function bifont() {
 
 // watch
 function watcher() {
-  watch(baseDir + '/**/*.{njk,htm,html}', { usePolling: true }, parallel(assemble, styles))
-  watch(baseDir + '/assets/scripts/**/*.{js,mjs,cjs}', { usePolling: true }, parallel(scripts))
-  watch(baseDir + '/assets/styles/**/*.{css,scss}', { usePolling: true }, parallel(assemble, styles))
-  watch(baseDir + '/assets/images/**/*.{jpg,png,svg,gif}', { usePolling: true }, parallel(images))
+  watch(baseDir + '/**/*.{njk,htm,html}', series(assemble, styles))
+  watch(baseDir + '/assets/scripts/**/*.{js,ts,mjs,cjs}', scripts)
+  watch(baseDir + '/assets/styles/**/*.css', series(assemble, styles))
+  watch(baseDir + '/assets/images/**/*.{jpg,png,svg,gif}', images)
 }
 
 // export
-export { copy, bifont, clean, images, scripts, styles }
+export { copy, bifont, clean, assemble, images, scripts, styles }
 export let inline = series(inlinescripts, inlinestyles, postclean)
 export let assets = series(copy, images, assemble, scripts, styles)
 export let dev = series(clean, assets, watcher)

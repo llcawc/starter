@@ -1,5 +1,6 @@
 /* fonts.css */
+/* stylelint-disable import-notation */
 
-@import '../fonts/Inter/inter.css';
-@import '../fonts/JetBrains/jetbrains.css';
-@import '../fonts/biFont/bi-font.css';
+@import "../fonts/Inter/inter.css";
+@import "../fonts/JetBrains/jetbrains.css";
+@import "../fonts/biFont/bi-font.css";

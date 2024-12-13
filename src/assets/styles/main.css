@@ -1,13 +1,10 @@
 /* main.css */
+/* stylelint-disable import-notation */
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-/* user other custom styles */
-@import 'blocks/totop.css';
-@import 'blocks/colormode.css';
-@import 'blocks/animate.css';
-@import 'blocks/common.css';
-@import 'blocks/waves.css';
-@import 'blocks/buttons.css';
+@import "./blocks/base.css";
+@import "./blocks/totop.css";
+@import "./blocks/colormode.css";
+@import "./blocks/animate.css";
+@import "./blocks/common.css";
+@import "./blocks/waves.css";
+@import "./blocks/buttons.css";

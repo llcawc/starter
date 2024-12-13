@@ -16,12 +16,12 @@ export default function buttons(): void {
 
       e.preventDefault() // preventing for submitting
 
-      let overlay = document.createElement('span') // creating a element span
+      const overlay = document.createElement('span') // creating a element span
       overlay.classList.add('overlay') // add a class iside the span
 
       if (but) {
-        let x = e.clientX - but.offsetLeft
-        let y = e.clientY - but.offsetTop
+        const x = e.clientX - but.offsetLeft
+        const y = e.clientY - but.offsetTop
 
         overlay.style.left = x + 'px'
         overlay.style.top = y + 'px'

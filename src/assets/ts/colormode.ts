@@ -27,7 +27,7 @@ export default function colorSwitcher(): void {
   if (!buttonSwicher) {
     throw new Error('!!! The color theme switch with the .color-switcher class was not found !!!')
   }
-  let [light, dark] = Array.from(buttonSwicher.children) // and take the switch subnodes
+  const [light, dark] = Array.from(buttonSwicher.children) // and take the switch subnodes
 
   // Get the current or preferred color theme
   const getPreferredTheme = (): string => {
@@ -63,14 +63,14 @@ export default function colorSwitcher(): void {
   // Keep track of the topic change in the system
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
     removeStoredTheme()
-    let theme = getPreferredTheme()
+    const theme = getPreferredTheme()
     showThemeIcon(theme)
     setTheme(theme)
   })
 
   // Install a color theme switch handler
   window.addEventListener('DOMContentLoaded', () => {
-    let usedTheme = getPreferredTheme()
+    const usedTheme = getPreferredTheme()
     // and let's install the theme at launch right away
     setTheme(usedTheme)
     // first, set the correct color theme icon
@@ -83,7 +83,7 @@ export default function colorSwitcher(): void {
       // get the attribute name of a non-hidden button
       ;[...Array.from(buttonSwicher.children)].forEach((el) => {
         if (!el.classList.contains('hidden')) {
-          let attr = el.attributes.getNamedItem('data-mode')
+          const attr = el.attributes.getNamedItem('data-mode')
           if (attr) {
             currentMode = attr.value
           } else {

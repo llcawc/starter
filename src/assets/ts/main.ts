@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   colorSwitcher()
   buttons()
   year()
-  let intViewportWidth = window.innerWidth // viwport X
+  const intViewportWidth = window.innerWidth // viwport X
   if (intViewportWidth >= 760) {
     eventScrollToTop()
   }

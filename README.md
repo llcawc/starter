@@ -1,6 +1,6 @@
 # Starter template for the front-end
 
-_Version 0.0.1 Date 24.05.15_
+_Version 0.0.2 Date 24.12.13_
 
 Starter uses Gulp as dependencies for front-end's works. For multi page development used PUG templating language. On board: [Nunjuks](https://mozilla.github.io/nunjucks/) Templates, [TailwindCSS](https://github.com/tailwindlabs/tailwindcss) and import suntax on base [PostCSS](https://github.com/postcss/postcss) witch Autoprefixer and minify plugins. Also used [Rollup](https://github.com/rollup/rollup) witch JSON plugins. Minify scripts: [Terser](https://github.com/terser/terser). Minify image: [Imagemin](https://github.com/imagemin/imagemin). Added a gulp script that allows you to embed the script and style in html.
 

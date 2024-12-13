@@ -18,7 +18,7 @@ export default function eventScrollToTop(): void {
   }
 
   window.addEventListener('scroll', function () {
-    let counter = this.scrollY
+    const counter = this.scrollY
     if (counter > metka) {
       arrowUp.classList.add('up')
       arrowUp.classList.remove('down')
