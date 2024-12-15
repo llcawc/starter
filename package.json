@@ -9,8 +9,11 @@
   "scripts": {
     "tsc": "tsc -p ./gulp",
     "dev": "gulp dev",
+    "build": "cross-env BUILD=production gulp build",
     "inline": "gulp inline",
-    "build": "cross-env BUILD=production gulp build"
+    "lint:script": "eslint",
+    "lint:style": "stylelint \"**/*.css\"",
+    "lint:style-fix": "stylelint \"**/*.css\" --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -64,6 +67,7 @@
     "typescript-eslint": "^8.18.0"
   },
   "dependencies": {
+    "@types/node": "^22.10.2",
     "animate.css": "^4.1.1",
     "bootstrap-icons": "^1.11.3"
   },

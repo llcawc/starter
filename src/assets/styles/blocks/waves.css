@@ -29,26 +29,17 @@
   --moving-waves-child-5-duration: 25s;
   --moving-waves-child-6-delay: -3s;
   --moving-waves-child-6-duration: 30s;
-}
 
-/* moving waves animation */
-
-.waves {
+  /* moving waves animation */
   position: var(--waves-position);
   width: var(--waves-width);
   height: var(--waves-height);
   margin-bottom: var(--waves-margin-bottom);
   fill: none;
 
-  /*Fix for safari gap*/
+  /* Fix for safari gap */
   min-height: var(--waves-min-height);
   max-height: var(--waves-max-height);
-}
-
-.waves.no-animation {
-  .moving-waves > use {
-    animation: none;
-  }
 }
 
 .wave-rotate {
@@ -64,38 +55,45 @@
 .moving-waves > use:nth-child(1) {
   animation-delay: var(--moving-waves-child-1-delay);
   animation-duration: var(--moving-waves-child-1-duration);
-  fill: rgba(var(--waves-color) / 0.4);
+  fill: rgba(var(--waves-color) / 40%);
 }
 
 .moving-waves > use:nth-child(2) {
   animation-delay: var(--moving-waves-child-2-delay);
   animation-duration: var(--moving-waves-child-2-duration);
-  fill: rgba(var(--waves-color) / 0.35);
+  fill: rgba(var(--waves-color) / 35%);
 }
 
 .moving-waves > use:nth-child(3) {
   animation-delay: var(--moving-waves-child-3-delay);
   animation-duration: var(--moving-waves-child-3-duration);
-  fill: rgba(var(--waves-color) / 0.25);
+  fill: rgba(var(--waves-color) / 25%);
 }
 
 .moving-waves > use:nth-child(4) {
   animation-delay: var(--moving-waves-child-4-delay);
   animation-duration: var(--moving-waves-child-4-duration);
-  fill: rgba(var(--waves-color) / 0.2);
+  fill: rgba(var(--waves-color) / 20%);
 }
 
 .moving-waves > use:nth-child(5) {
   animation-delay: var(--moving-waves-child-5-delay);
   animation-duration: var(--moving-waves-child-5-duration);
-  fill: rgba(var(--waves-color) / 0.15);
+  fill: rgba(var(--waves-color) / 15%);
 }
 
 .moving-waves > use:nth-child(6) {
   animation-delay: var(--moving-waves-child-6-delay);
   animation-duration: var(--moving-waves-child-6-duration);
-  fill: rgba(var(--waves-color) / 1);
+  fill: rgba(var(--waves-color) / 100%);
 }
+
+.waves.no-animation {
+  .moving-waves > use {
+    animation: none;
+  }
+}
+
 @keyframes move-forever {
   0% {
     transform: var(--moving-waves-keyframe-0);
@@ -108,14 +106,14 @@
 
 /* Shrinking for mobile */
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
   .waves {
     height: var(--waves-height-md);
     min-height: var(--waves-min-height-md);
   }
 }
 
-@media (max-width: 640px) {
+@media (width <= 640px) {
   .waves {
     height: var(--waves-height-sm);
     min-height: var(--waves-min-height-sm);

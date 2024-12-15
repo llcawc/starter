@@ -9,35 +9,44 @@
     --dark: 17 24 39; /* gray-900 */
     --white: 255 255 255; /* white color */
   }
+
   *:focus-visible {
     @apply rounded outline outline-2 outline-offset-2 outline-accent/80;
   }
+
   body {
     font-family: var(--font-family-sans);
+
     @apply relative min-w-80 overflow-x-hidden bg-white text-dark dark:bg-dark dark:text-light;
   }
+
   code {
     @apply text-red-700 text-opacity-90 dark:text-red-400;
+
     font-family: var(--font-family-mono);
   }
+
   a {
     @apply text-accent transition duration-250 hover:text-accent/60;
   }
+
   h1,
   h2,
   h3 {
     font-weight: bold;
     background: linear-gradient(90deg, #2176ff 25%, #7a69ea 50%, #cc69ea 75%, #98b1d6 100%);
     background-clip: text;
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+
   h1 {
     @apply mb-4 text-4xl;
   }
+
   h2 {
     @apply mb-4 text-3xl;
   }
+
   h3 {
     @apply mb-3 text-2xl;
   }

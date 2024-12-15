@@ -12,16 +12,16 @@ services:
       - c:\www\blueprints\starter\dist:/var/www/html
       - c:\www\blueprints\starter\config\angie\angie.conf:/etc/angie/angie.conf:ro
       - c:\www\blueprints\starter\config\angie\default.conf:/etc/angie/http.d/default.conf:ro
-    depends_on:
-      - php
+  #   depends_on:
+  #     - php
 
-  php:
-    image: php:8.3-fpm
-    container_name: php
-    networks:
-      - netangie
-    volumes:
-      - c:\www\blueprints\starter\dist:/var/www/html
+  # php:
+  #   image: php:8.3-fpm
+  #   container_name: php
+  #   networks:
+  #     - netangie
+  #   volumes:
+  #     - c:\www\blueprints\starter\dist:/var/www/html
 
 networks:
   netangie:
