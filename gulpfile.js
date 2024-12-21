@@ -1,29 +1,29 @@
 // gulpfile.js • frontend • nunjucks • tailwindcss • pasmurno by llcawc • https://github.com/llcawc
 
 // import modules
+import { babel } from '@rollup/plugin-babel'
+import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
+import resolve from '@rollup/plugin-node-resolve'
+import terser from '@rollup/plugin-terser'
+import typescript from '@rollup/plugin-typescript'
+import autoprefixer from 'autoprefixer'
+import cssnano from 'cssnano'
+import { deleteAsync as del } from 'del'
+import gulp from 'gulp'
+import htmlmin from 'gulp-htmlmin'
+import imagemin from 'gulp-img'
+import { nunjucksCompile } from 'gulp-nunjucks' // About nunjucks: https://mozilla.github.io/nunjucks/
+import postcss from 'gulp-postcss'
+import rename from 'gulp-ren'
+import replace from 'gulp-replace'
 import fs from 'node:fs'
 import { env } from 'node:process'
-import gulp from 'gulp'
-const { src, dest, series, watch } = gulp
-import { nunjucksCompile } from 'gulp-nunjucks' // About nunjucks: https://mozilla.github.io/nunjucks/
-import htmlmin from 'gulp-htmlmin'
+import postcssImport from 'postcss-import'
+import { rollup } from 'rollup'
 import tailwindcss from 'tailwindcss'
 import tailwindNesting from 'tailwindcss/nesting/index.js'
-import postcss from 'gulp-postcss'
-import cssnano from 'cssnano'
-import postcssImport from 'postcss-import'
-import autoprefixer from 'autoprefixer'
-import { rollup } from 'rollup'
-import { babel } from '@rollup/plugin-babel'
-import json from '@rollup/plugin-json'
-import commonjs from '@rollup/plugin-commonjs'
-import resolve from '@rollup/plugin-node-resolve'
-import typescript from '@rollup/plugin-typescript'
-import terser from '@rollup/plugin-terser'
-import replace from 'gulp-replace'
-import { deleteAsync as del } from 'del'
-import rename from './gulp/gulp-ren.js'
-import imagemin from './gulp/gulp-img.js'
+const { src, dest, series, watch } = gulp
 
 // variables & path
 const baseDir = 'src'
@@ -185,7 +185,7 @@ function watcher() {
 }
 
 // export
-export { copy, bifont, clean, assemble, images, scripts, styles }
+export { assemble, bifont, clean, copy, images, scripts, styles }
 export let inline = series(inlinescripts, inlinestyles, postclean)
 export let assets = series(copy, images, assemble, scripts, styles)
 export let dev = series(clean, assets, watcher)
