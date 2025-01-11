@@ -1,34 +1,20 @@
-{% set pages = {
-'Home': '/',
-'Post': '/post.html',
-'Waves': '/waves.html',
-'Error404': '/404.html'
-} %}
-{# --- #}
-<header class="relative flex min-h-52 items-center overflow-hidden {{bgImg}} bg-cover bg-[50%] p-0 sm:min-h-64 md:min-h-[25rem]">
+<header class="relative flex min-h-52 items-center overflow-hidden bg-burg bg-cover bg-[50%] p-0 sm:min-h-64 md:min-h-[25rem]">
   <div class="absolute left-0 top-0 h-full w-full bg-gradient-to-b from-indigo-950/70 via-black/60 to-indigo-950/70"></div>
   <div class="container relative mx-auto px-3 pb-4">
     <h1 class="mb-4 text-center text-white drop-shadow-hx">
-      {%if title == 'Home'%}
-      <i class="bi bi-house"></i>
-      {% endif %}
-      {%if title == 'Post'%}
-      <i class="bi bi-pencil"></i>
-      {% endif %}
-      {%if title == 'Waves'%}
-      <i class="bi bi-wind"></i>
-      {% endif %}
-      {{headerText}}
+      <i class="bi {{ icon }}"></i>
+      {{ header }}
     </h1>
     <nav class="container mx-auto px-3 font-bold text-white">
       <ul class="flex justify-center gap-4">
-        {% for page, url in pages %}
-        <li>
-          <a class="text-white hover:text-accent uppercase
-          {%if title == page%}
-          underline decoration-accent decoration-4 underline-offset-4
-          {% endif %}" href="{{ url }}">{{ page }}</a>
-        </li>
+        {% for item in pages %}
+          <li>
+            {% if item.page === page %}
+              <p class="uppercase text-white/100">{{ item.title }}</p>
+            {% else %}
+              <a class="uppercase text-blue-400 hover:underline hover:text-blue-400 decoration-4 underline-offset-4 hover:decoration-white" href="/{{ item.page }}.html">{{ item.title }}</a>
+            {% endif %}
+          </li>
         {% endfor %}
       </ul>
     </nav>

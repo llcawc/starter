@@ -1,33 +1,31 @@
 {% extends "layouts/main.njk" %}
-{% set title = 'Home' %}
-{% set headerText = 'Starter Template' %}
-{% set metaDescription = 'Сайт в разработке. Приходите потом, позже.' %}
-{% set bgImg = "bg-[url('/assets/images/burg.jpg')]" %}
+{% set page = 'index' %}
 {# --- #}
-
 {% block main %}
-
-<main class="container mx-auto px-3 pt-12 pb-6 flex-grow">
-  <h2>Welcome to Starter template for a multi-page site on base nunjucks!</h2>
-  <article class="columns-auto md:columns-2 xl:columns-3 mb-8">
-    <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, natus exercitationem, enim adipisci ad voluptatibus porro iste eaque optio, recusandae facilis excepturi magnam voluptatum. Sed veritatis a rem molestiae, nemo amet! Dignissimos, esse ad cumque quod nisi sequi adipisci possimus? Pariatur voluptates optio inventore ab ut eum delectus illum harum.</p>
-    <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Aliquam ex earum, quisquam, cupiditate adipisci iste obcaecati dicta iusto odio exercitationem incidunt at deserunt dolores architecto nostrum dolore? Minus necessitatibus non deleniti esse, ducimus nobis culpa nostrum, ipsum fugiat omnis quae tempora obcaecati!</p>
-    <blockquote class="relative my-6 ml-12 mr-6 sm:ml-20 sm:mr-12 text-gray-600 dark:text-gray-300 font-medium italic indent-5 before:absolute before:top-0 before:-left-12 before:w-10 before:h-10 before:bg-pen before:bg-center before:bg-cover before:bg-no-repeat">"План, что и говорить, был превосходный: простой и ясный, лучше не придумать. Недостаток у него был только один: было совершенно неизвестно, как привести его в исполнение ..."
-      <p class="my-2 font-light">- Льюис Кэрролл. "Алиса в стране чудес"</p>
-    </blockquote>
-    <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minus porro eveniet eos beatae explicabo! Aspernatur nobis quod dolor aliquam!</p>
-    <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Explicabo, aliquid. Quisquam iure officia illum cum cumque ex ullam quasi maxime, nostrum unde eaque totam aperiam dolorum. Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur.</p>
-    <p>Run <code>npm</code> command:</p>
-    <ul class="ml-4">
-      <li>for development: <code>>> npm run dev</code>
-      </li>
-      <li>for build: <code>>> npm run build</code>
-      </li>
-    </ul>
-  </article>
-  <div class="text-right">
-    <a href="/post.html">read more ...</a>
-  </div>
-</main>
-
+  <main class="container mx-auto px-3 pt-12 pb-6 flex-grow">
+    <h2>{{ message }}</h2>
+    <article class="columns-auto md:columns-2 xl:columns-3 mb-8">
+      <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, natus exercitationem, enim adipisci ad voluptatibus porro iste eaque optio, recusandae facilis excepturi magnam voluptatum. Sed veritatis a rem molestiae, nemo amet! Dignissimos, esse ad cumque quod nisi sequi adipisci possimus? Pariatur voluptates optio inventore ab ut eum delectus illum harum.</p>
+      <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Aliquam ex earum, quisquam, cupiditate adipisci iste obcaecati dicta iusto odio exercitationem incidunt at deserunt dolores architecto nostrum dolore? Minus necessitatibus non deleniti esse, ducimus nobis culpa nostrum, ipsum fugiat omnis quae tempora obcaecati!</p>
+      <blockquote class="relative my-6 ml-12 mr-6 sm:ml-20 sm:mr-12 text-gray-600 dark:text-gray-300 font-medium italic indent-5 before:absolute before:top-0 before:-left-12 before:w-10 before:h-10 before:bg-pen before:bg-center before:bg-cover before:bg-no-repeat">"План, что и говорить, был превосходный: простой и ясный, лучше не придумать. Недостаток у него был только один: было совершенно неизвестно, как привести его в исполнение ..."
+        <p class="my-2 font-light">- Льюис Кэрролл. "Алиса в стране чудес"</p>
+      </blockquote>
+      <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minus porro eveniet eos beatae explicabo! Aspernatur nobis quod dolor aliquam!</p>
+      <p class="mb-4 indent-6 first-letter:font-bold first-letter:text-2xl first-letter:leading-6 mr-[2px]">Explicabo, aliquid. Quisquam iure officia illum cum cumque ex ullam quasi maxime, nostrum unde eaque totam aperiam dolorum. Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur.</p>
+      <p>Run
+        <code>npm</code>
+        command:</p>
+      <ul class="ml-4">
+        <li>for development:
+          <code>>> npm run dev</code>
+        </li>
+        <li>for build:
+          <code>>> npm run build</code>
+        </li>
+      </ul>
+    </article>
+    <div class="text-right">
+      <a href="/post.html">read more ...</a>
+    </div>
+  </main>
 {% endblock %}
