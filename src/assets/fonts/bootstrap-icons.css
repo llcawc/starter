@@ -5,36 +5,38 @@
  */
 
 @font-face {
+  font-family: "bootstrap-icons";
   font-display: block;
-  font-family: bootstrap-icons;
-  src: url("/assets/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6") format("woff2"),
-url("/assets/fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("woff");
+  src:
+    url("/assets/fonts/bootstrap-icons.woff2?24e3eb84d0bcaf83d77f904c78ac1f47") format("woff2"),
+    url("/assets/fonts/bootstrap-icons.woff?24e3eb84d0bcaf83d77f904c78ac1f47") format("woff");
 }
 
 .bi::before,
 [class^="bi-"]::before,
 [class*=" bi-"]::before {
   display: inline-block;
-  font-family: bootstrap-icons !important;
-  font-style: normal;
+
+  font-family: "bootstrap-icons", fantasy !important;
   font-weight: normal !important;
+  font-style: normal;
   font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  vertical-align: -0.125em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+  text-transform: none;
+  vertical-align: -0.125em;
+}
+
+/* I only include what I need */
+.bi-bell::before {
+  content: "\f18a";
 }
 
 .bi-house::before {
   content: "\f425";
 }
-.bi-pencil::before {
-  content: "\f4cb";
-}
-.bi-wind::before {
-  content: "\f61d";
-}
-.bi-bell::before {
-  content: "\f18a";
+
+.bi-vector-pen::before {
+  content: "\F604";
 }

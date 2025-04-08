@@ -7,22 +7,21 @@
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .stylelin*, postcss*, tailwind*, .babel*"
+    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .stylelin*"
   },
 
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.pcss": "scss"
   },
   "emmet.includeLanguages": {
-    "njk": "html"
+    "postcss": "scss"
   },
+  "vsicons.associations.files": [{ "icon": "postcss", "extensions": ["pcss"], "format": "svg" }],
+  "vsicons.associations.folders": [{ "icon": "style", "extensions": ["pcss"], "format": "svg", "overrides": "pcss" }],
 
-  "vsicons.associations.files": [{ "icon": "nunjucks", "extensions": ["njk"], "format": "svg" }],
-  "material-icon-theme.files.associations": {
-    "*.njk": "nunjucks"
-  },
+  "stylelint.configFile": ".stylelintrc.json",
 
-  "stylelint.validate": ["css", "scss", "pcss"],
+  "stylelint.validate": ["scss", "css", "postcss"],
   "eslint.validate": ["typescript", "javascript"],
   "eslint.enable": true,
   "editor.codeActionsOnSave": {
@@ -30,7 +29,6 @@
     "source.fixAll.eslint": "explicit"
   },
 
-  "javascript.inlayHints.enumMemberValues.enabled": true,
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "javascript.inlayHints.parameterNames.enabled": "literals",
   "javascript.inlayHints.parameterTypes.enabled": true,

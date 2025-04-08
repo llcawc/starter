@@ -1,0 +1,16 @@
+extends ../layouts/main
+
+block prepend variables
+  - const page = "waves";
+
+block main
+  main(class="wavebtn container animated fadeIn")
+    h2 Buttons
+    div(class="buttons")
+      a(href="#", class="mybtn one") Button
+      a(href="#", class="mybtn two") Button
+    div(class="butwrapper", type="button")
+      div(class="butcart")
+        div(class="button-layer")
+        button(id="liveAlertBtn", class="gradbtn") Alert Button
+    div#liveAlertPlaceholder

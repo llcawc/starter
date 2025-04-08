@@ -1,0 +1,33 @@
+/* button up to top */
+
+.back-to-top
+  position: absolute
+  left: 50%
+  bottom: -0.5rem
+  width: 2.5rem
+  height: 2.5rem
+  transform: translateX(-1.25rem)
+  border-radius: 50%
+  background-color: rgba(#030712, 5%)
+  transition: all 1s
+  opacity: 0
+
+  & svg
+    width: 100%
+    height: 100%
+    transition: all 250ms
+    fill: #030712
+
+  &.up
+    bottom: 5rem
+    opacity: 1
+
+  &.down
+    bottom: -0.5rem
+    opacity: 0
+
+[data-bs-theme="dark"]
+  .back-to-top
+    background-color: rgba(#fff, 10%)
+    & svg
+      fill: #fff

@@ -1,0 +1,67 @@
+/* waves.css - Waves Animation & Styling */
+
+.waves
+  --waves-color: var(--ps-body-bg-rgb)
+  position: relative
+  width: 100%
+  height: 8rem
+  margin-bottom: -0.4rem
+  fill: none
+  min-height: 6rem
+  max-height: 10rem
+
+.wave-rotate
+  transform: rotate(180deg)
+
+.moving-waves > use
+  animation: move-forever 40s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite
+
+  &:nth-child(1)
+    animation-delay: -2s
+    animation-duration: 11s
+    fill: rgba(var(--waves-color), 40%)
+
+  &:nth-child(2)
+    animation-delay: -4s
+    animation-duration: 13s
+    fill: rgba(var(--waves-color), 35%)
+
+  &:nth-child(3)
+    animation-delay: -3s
+    animation-duration: 15s
+    fill: rgba(var(--waves-color), 25%)
+
+  &:nth-child(4)
+    animation-delay: -4s
+    animation-duration: 20s
+    fill: rgba(var(--waves-color), 20%)
+
+  &:nth-child(5)
+    animation-delay: -4s
+    animation-duration: 25s
+    fill: rgba(var(--waves-color), 15%)
+
+  &:nth-child(6)
+    animation-delay: -3s
+    animation-duration: 30s
+    fill: rgba(var(--waves-color), 100%)
+
+.waves.no-animation
+  .moving-waves > use
+    animation: none
+
+@keyframes move-forever
+  0%
+    transform: translate3d(-90px, 0, 0)
+  100%
+    transform: translate3d(85px, 0, 0)
+
+@media (width < 768px)
+  .waves
+    height: 5rem
+    min-height: 5rem
+
+@media (width < 640px)
+  .waves
+    height: 3rem
+    min-height: 3rem

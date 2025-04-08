@@ -1,0 +1,20 @@
+extends ../layouts/main
+
+block prepend variables
+  - const page = "404";
+
+block header
+  header
+
+block main
+  main(class="error")
+    div(class="err-vuale")
+    div(class="err-body animated fadeIn")
+      h1 #[i(class="bi bi-bell")]
+      div
+        h1 Error 404!
+        p Document not found.
+        a(class="btn btn-primary" href="/") Home
+
+block footer
+  footer

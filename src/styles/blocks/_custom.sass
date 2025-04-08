@@ -1,0 +1,199 @@
+/* custom style */
+
+*:focus-visible
+  outline: 3px solid rgba($accent, 70%) // color-mix(in srgb, $accent 70%, #00000000)
+  outline-offset: 2px
+  border-radius: 4px
+
+body
+  position: relative
+  overflow-x: hidden
+  min-width: 320px
+
+h1, h2, h3
+  font-weight: bold
+  background: linear-gradient(to right, #2176ff 25%, #7a69ea 50%, #cc69ea 75%, #98b1d6 100%)
+  background-clip: text
+  -webkit-text-fill-color: transparent
+
+.hidden
+  display: none
+
+/* main layout */
+.wrapper
+  display: flex
+  flex-direction: column
+  justify-content: center
+  min-height: 100vh
+
+.header
+  position: relative
+  z-index: 0
+  min-height: 13rem
+  display: flex
+  align-items: center
+  overflow: hidden
+  background-image: url("/assets/images/burg.jpg")
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+  @media (width > $sm)
+    min-height: 16rem
+  @media (width > $md)
+    min-height: 25rem
+
+.header-vuale
+  position: absolute
+  left: 0
+  top: 0
+  height: 100%
+  width: 100%
+  background-image: linear-gradient(to bottom, #1e1a4dad, rgba(#000, 50%), #1e1a4dad)
+
+[data-bs-theme="dark"]
+  .header-vuale
+    background-image: linear-gradient(to bottom, #1e1a4dad, rgba(#000, 90%), #1e1a4dad)
+
+.header-body
+  position: relative
+  h1
+    text-align: center
+    color: #fff
+    margin-block: 1rem
+    text-shadow: 1px 1px 12px #b9e1ff7a
+
+.header-nav
+  font-weight: bold
+  color: #fff
+  margin-block: 1rem
+  ul
+    display: flex
+    justify-content: center
+    gap: 1rem
+    list-style: none
+    padding: 0
+    margin: 0
+    text-transform: uppercase
+    li
+      a
+        color: #00b7ff
+        padding: 4px
+        transition: 250ms
+        &:hover
+          color: color-mix(in srgb, #00b7ff, #fff)
+        &.active
+          color: #fff
+
+.header-waves
+  position: absolute
+  bottom: 0
+  z-index: 10
+  width: 100%
+
+footer
+  align-self: flex-end
+  .copyright
+    display: flex
+    justify-content: space-between
+    flex-direction: column
+    gap: 0.75rem
+    margin-block: 1rem
+    p
+      margin: 0
+    @media(width > $lg)
+      flex-direction: row
+      align-items: center
+
+/* index */
+main
+  article
+    columns: auto
+    margin-bottom: 2rem
+    @media (width > $md)
+      columns: 2
+    @media (width > $xl)
+      columns: 3
+
+p.indent
+  text-indent: 1.5rem
+  &::first-letter
+    font-weight: bold
+    font-size: 1.5rem
+    line-height: 1.5rem
+    margin-right: 1px
+
+blockquote
+  position: relative
+  margin-block: 1.5rem
+  margin-left: 3rem
+  margin-right: 1.5rem
+  font-size: medium
+  font-style: italic
+  text-indent: 1.25rem
+  &::before
+    content: ""
+    position: absolute
+    top: 0
+    left: -3rem
+    width: 2.5rem
+    height: 2.5rem
+    background-image: url('/assets/images/icons/pen.svg')
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+  p
+    font-weight: lighter
+  @media (width > $sm )
+    margin-left: 5rem
+    margin-right: 3rem
+
+/* post */
+.burg
+  margin-block: 1rem
+  img
+    width: 100%
+    height: 10rem
+    object-fit: cover
+    filter: sepia(0.9)
+
+/* waves & buttons */
+.wavebtn
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: center
+  align-items: center
+  flex-grow: 1
+
+#liveAlertPlaceholder
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translateX(-50%) translateY(-50%)
+
+/* error404 */
+.error
+  display: flex
+  justify-content: center
+  align-items: center
+  .err-vuale
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+    background-image: linear-gradient(to top, rgba(#000, 80%) ), url("/assets/images/world.jpg")
+    background-position: center
+    background-size: cover
+    background-repeat: no-repeat
+  .err-body
+    position: relative
+    display: flex
+    gap: 0 1rem
+    .bi
+      font-size: 3.75rem
+    h1
+      margin-bottom: 0
+    p
+      margin-bottom: 1.5rem

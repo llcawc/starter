@@ -1,0 +1,21 @@
+extends ../layouts/main
+
+block prepend variables
+  - const page = "index";
+
+block main
+  main(class="container animated fadeIn")
+    h2(class="my-7") #{message}
+    article
+      p(class="indent") Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, natus exercitationem, enim adipisci ad voluptatibus porro iste eaque optio, recusandae facilis excepturi magnam voluptatum. Sed veritatis a rem molestiae, nemo amet! Dignissimos, esse ad cumque quod nisi sequi adipisci possimus? Pariatur voluptates optio inventore ab ut eum delectus illum harum.
+      p.indent Aliquam ex earum, quisquam, cupiditate adipisci iste obcaecati dicta iusto odio exercitationem incidunt at deserunt dolores architecto nostrum dolore? Minus necessitatibus non deleniti esse, ducimus nobis culpa nostrum, ipsum fugiat omnis quae tempora obcaecati!
+      blockquote "План, что и говорить, был превосходный: простой и ясный, лучше не придумать. Недостаток у него был только один: было совершенно неизвестно, как привести его в исполнение ..."
+        p - Льюис Кэрролл. "Алиса в стране чудес"
+      p.indent Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita minus porro eveniet eos beatae explicabo! Aspernatur nobis quod dolor aliquam!
+      p.indent Explicabo, aliquid. Quisquam iure officia illum cum cumque ex ullam quasi maxime, nostrum unde eaque totam aperiam dolorum. Reprehenderit officiis officia, praesentium similique sed ab optio aperiam commodi non esse vero! Asperiores eligendi distinctio ipsam veniam nam dignissimos consequuntur itaque dicta autem. Nobis ut repudiandae ipsum iusto ducimus nostrum consectetur.
+      p.indent Run #[code npm] command:
+      ul(class="ms-4")
+        li for development: #[code &gt;&gt; npm run dev]
+        li for build: #[code &gt;&gt; npm run build]
+      div(class="text-end")
+        a(href="/post.html") read more ...

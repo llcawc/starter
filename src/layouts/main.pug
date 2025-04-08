@@ -1,0 +1,36 @@
+block variables
+  - const item = pages.find((p) => p.page === page);
+  - let title = item.title;
+  - let header = item.header;
+  - let icon = item.icon;
+
+doctype html
+html(lang="ru")
+  head
+    title Starter • #{ title }
+    meta(charset="utf-8")
+    meta(name="author", content="pasmurno in llcawc")
+    meta(name="description", content="{{ metaDescription }}")
+    meta(name="keywords", content="starter")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    meta(name="robots", content="noindex,nofollow")
+    link(rel="canonical", href="")
+    link(rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon")
+    link(rel="shortcut icon" href="/assets/images/favicon.svg" type="image/svg+xml")
+    link(rel="shortcut icon", href="/assets/images/favicon.png", type="image/png")
+    meta(property="og:image" content="/assets/images/ice.jpg")
+    //- Compressed and components style file: libraries and custom
+    link(rel="preload", as="style", href="/assets/css/fonts.css")
+    link(rel="stylesheet", href="/assets/css/fonts.css", media="print", onload="this.media='all'")
+    link(rel="stylesheet", href="/assets/css/main.css")
+    //- Compressed JavaScript: libraries and custom script
+    script(type="module", src="/assets/js/main.js")
+  body
+    div(class="wrapper")
+      block header
+        include ../includes/header
+      block main
+        main
+          p It is default content in main section.
+      block footer
+        include ../includes/footer
