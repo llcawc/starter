@@ -22,7 +22,8 @@ function sass() {
   const options =
     env.BUILD === 'production'
       ? {
-          minify: true,
+          silent: false,
+          postprocess: 'full',
           loadPaths: ['src/styles', 'node_modules'],
           purgeOptions: {
             content: [
@@ -36,13 +37,16 @@ function sass() {
             keyframes: true,
           },
         }
-      : { minify: false }
-  return src('src/styles/*.sass').pipe(licss(options)).pipe(dest('dist/assets/css'))
+      : { silent: false, postprocess: 'none' }
+  return src('src/styles/*.sass', { sourcemaps: true })
+    .pipe(licss(options))
+    .pipe(dest('dist/assets/css', { sourcemaps: '.' }))
 }
 
 // scripts task
-function scripts() {
-  return tscom({ input: 'src/scripts/main.ts', dir: 'dist/assets/js' })
+async function scripts(cb) {
+  await tscom({ input: 'src/scripts/main.ts', dir: 'dist/assets/js' })
+  cb()
 }
 
 // images task
