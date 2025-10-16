@@ -1,6 +1,6 @@
 {
   "name": "starter",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "starter template for frontend",
   "author": "llcawc by pasmurno",
   "private": true,
@@ -10,29 +10,32 @@
   "scripts": {
     "format": "prettier --write ./src",
     "lint": "prettier --check ./src && eslint ./src",
+    "serve": "serve",
     "dev": "gulp dev",
     "sass": "cross-env BUILD=production gulp sass",
     "build": "cross-env BUILD=production gulp build"
   },
   "devDependencies": {
-    "@eslint/js": "^9.33.0",
+    "@eslint/js": "^9.37.0",
+    "@pasmurno/pscss": "^0.0.1",
+    "@pasmurno/serve": "^0.0.4",
     "@types/bootstrap": "^5.2.10",
     "@types/gulp": "^4.0.17",
-    "@types/node": "^24.2.1",
-    "bootstrap": "^5.3.7",
-    "cross-env": "^10.0.0",
-    "del": "^8.0.0",
-    "eslint": "^9.33.0",
-    "globals": "^16.3.0",
+    "@types/node": "^24.8.0",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "cross-env": "^10.1.0",
+    "del": "^8.0.1",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
     "gulp": "^5.0.1",
-    "gulp-changed": "^5.0.2",
+    "gulp-changed": "^5.0.4",
     "gulp-pug": "^5.0.0",
-    "licss": "^0.1.0",
     "prettier": "^3.6.2",
     "prettier-plugin-embed": "^0.5.0",
-    "prettier-plugin-organize-imports": "^4.2.0",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "psimage": "^0.0.2",
-    "tscom": "^0.0.5",
-    "typescript-eslint": "^8.39.1"
+    "tscom": "^0.0.7",
+    "typescript-eslint": "^8.46.1"
   }
 }

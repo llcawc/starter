@@ -1,15 +1,21 @@
 // gulpfile.js • frontend • starter • pasmurno by llcawc • https://github.com/llcawc
 
 // import modules
+import { pscss } from '@pasmurno/pscss'
+import serve from '@pasmurno/serve'
 import { deleteAsync } from 'del'
 import { dest, parallel, series, src, watch } from 'gulp'
 import changed from 'gulp-changed'
 import pug from 'gulp-pug'
-import licss from 'licss'
 import { env } from 'node:process'
 import psimage from 'psimage'
-import tscom from 'tscom'
+import { tscom } from 'tscom'
 import data from './src/data/site.js'
+
+// server
+async function server() {
+  return await serve()
+}
 
 // compile pug files
 function html() {
@@ -22,10 +28,9 @@ function sass() {
   const options =
     env.BUILD === 'production'
       ? {
-          silent: false,
-          postprocess: 'full',
+          minify: true,
           loadPaths: ['src/styles', 'node_modules'],
-          purgeOptions: {
+          purgeCSSoptions: {
             content: [
               './src/{pages,includes,layouts}/*.pug',
               './src/data/*.{js,json}',
@@ -35,18 +40,18 @@ function sass() {
             ],
             safelist: [/show/, /fade/, /m-0/, /^alert.*/, /data-bs-theme/, /data-checked/, /back-to-top/, /overlay/],
             keyframes: true,
+            variables: true,
           },
         }
-      : { silent: false, postprocess: 'none' }
+      : { minify: false }
   return src('src/styles/*.sass', { sourcemaps: true })
-    .pipe(licss(options))
+    .pipe(pscss(options))
     .pipe(dest('dist/assets/css', { sourcemaps: '.' }))
 }
 
 // scripts task
-async function scripts(cb) {
-  await tscom({ input: 'src/scripts/main.ts', dir: 'dist/assets/js' })
-  cb()
+function scripts() {
+  return src('src/scripts/main.ts').pipe(tscom()).pipe(dest('dist/assets/js'))
 }
 
 // images task
@@ -84,7 +89,7 @@ function monitor() {
 }
 
 // export
-export { clean, fonts, html, images, monitor, sass, scripts }
+export { clean, fonts, html, images, monitor, sass, scripts, server }
 export const assets = parallel(html, sass, scripts, fonts, images)
-export const dev = series(clean, assets, monitor)
+export const dev = series(clean, assets, server, monitor)
 export const build = series(clean, assets)
