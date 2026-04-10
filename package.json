@@ -1,6 +1,6 @@
 {
   "name": "starter",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "private": true,
   "description": "starter template for frontend",
   "license": "MIT",
@@ -13,7 +13,6 @@
     "fmt": "oxfmt",
     "serve": "serve",
     "dev": "gulp dev",
-    "sass": "cross-env BUILD=production gulp sass",
     "build": "cross-env BUILD=production gulp build"
   },
   "devDependencies": {

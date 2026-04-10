@@ -57,7 +57,7 @@ function style() {
           },
         }
       : { minify: false }
-  return src('src/styles/*.sass', { sourcemaps: env.BUILD === 'production' ? false : true })
+  return src('src/styles/*.sass', { sourcemaps: env.BUILD !== 'production' })
     .pipe(pscss(options))
     .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/assets/css', { sourcemaps: '.' }))
