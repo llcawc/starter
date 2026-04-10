@@ -1,46 +1,181 @@
 {
-  "liveServer.settings.root": "/dist",
-  "liveServer.settings.port": 3000,
-  "liveServer.settings.CustomBrowser": "firefox",
-
+  "files.defaultLanguage": "html",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "files.eol": "\n",
+  "editor.smoothScrolling": true,
+  "editor.matchBrackets": "never",
+  "editor.tabSize": 2,
+  "editor.linkedEditing": true,
+  "editor.renderControlCharacters": true,
+  "editor.detectIndentation": false,
+  "editor.folding": true,
+  "editor.fontFamily": "'JetBrains Mono', Menlo, 'Ubuntu Mono', Consolas, monospace",
+  "editor.fontSize": 16,
+  "debug.console.fontSize": 16,
+  "editor.lineHeight": 1.5,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 120,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorStyle": "line",
+  "editor.cursorWidth": 2,
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.glyphMargin": false,
+  "editor.guides.bracketPairs": "active",
+  "editor.bracketPairColorization.enabled": true,
+  "html.format.wrapLineLength": 0,
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.inlayHints.parameterTypes.enabled": true,
+  "js/ts.inlayHints.parameterNames.enabled": "literals",
+  "js/ts.inlayHints.variableTypes.enabled": true,
+  "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
+  "js/ts.inlayHints.enumMemberValues.enabled": true,
+  "js/ts.inlayHints.propertyDeclarationTypes.enabled": true,
+  "http.proxySupport": "off",
+  "files.associations": {
+    ".pcss": "scss",
+    ".exclude": "properties",
+    ".dockerignore": "ignore"
+  },
+  "emmet.includeLanguages": {
+    "postcss": "scss",
+    "ejs": "html",
+    "md": "html"
+  },
+  "breadcrumbs.enabled": false,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "git.ignoreMissingGitWarning": true,
+  "redhat.telemetry.enabled": true,
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.lineHeight": 1.2,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.fontFamily": "'Cascadia Code', Consolas, monospace",
+  "editor.formatOnSaveMode": "file",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "oxc.oxc-vscode",
+  // "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
+  "oxc.enable": true,
+  "oxc.lint.run": "onSave",
+  "editor.codeActionsOnSave": {
+    "source.format.oxc": "always",
+    "source.fixAll.oxc": "always"
+  },
+  "[pcss]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[sass]": {
+    "editor.defaultFormatter": "syler.sass-indented"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascript]": {
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescript]": {
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[javascriptreact]": {
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[typescriptreact]": {
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.semi": false,
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "cssPeek.peekFromLanguages": [
+    "htm",
+    "html",
+    "django-html",
+    "laravel-blade",
+    "razor",
+    "vue",
+    "blade",
+    "pug",
+    "jade",
+    "handlebars",
+    "php",
+    "twig",
+    "md",
+    "nunjucks",
+    "njk",
+    "javascript",
+    "javascriptreact",
+    "erb",
+    "typescript",
+    "typescriptreact",
+    "HTML (Eex)",
+    "html-eex",
+    "ejs",
+    "hbs",
+    "svelte",
+    "october-tpl"
+  ],
+  "cssPeek.peekToExclude": ["**/node_modules/**", "**/bower_components/**", "modules/**", "plugins/**", "vendor/**"],
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "vsicons.associations.files": [
+    { "icon": "postcss", "extensions": ["pcss"], "format": "svg" },
+    { "icon": "nunjucks", "extensions": ["njk"], "format": "svg" }
+  ],
+  "workbench.iconTheme": "vscode-icons",
+  "git.autofetch": true,
+  "bootstrapIntelliSense": {
+    "enable": true,
+    "bsVersion": "5.3.8",
+    "useLocalFile": false,
+    "cssFilePath": "",
+    "languageSupport": []
+  },
+  "sourcecraft-code-assist.deniedCommands": [],
+  "sourcecraft-code-assist.allowedCommands": ["npm test", "npm install", "tsc", "git log", "git diff", "git show"],
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .editorconfig, .stylelin*"
+    "package.json": "gulp*, post*, roll*, tail*, package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .babel*, .editorconfig, .stylelin*, biom*, .ox*"
   },
-
-  "files.associations": {
-    "*.pcss": "scss"
+  "chat.viewSessions.orientation": "stacked",
+  "json.schemaDownload.trustedDomains": {
+    "https://schemastore.azurewebsites.net/": true,
+    "https://raw.githubusercontent.com/": true,
+    "https://www.schemastore.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://json-schema.org/": true,
+    "https://biomejs.dev/": true
   },
-  "emmet.includeLanguages": {
-    "postcss": "scss"
-  },
-  "vsicons.associations.files": [{ "icon": "postcss", "extensions": ["pcss"], "format": "svg" }],
-  "vsicons.associations.folders": [{ "icon": "style", "extensions": ["pcss"], "format": "svg", "overrides": "pcss" }],
-
-  "stylelint.configFile": ".stylelintrc.json",
-
-  "stylelint.validate": ["scss", "css", "postcss"],
-  "eslint.validate": ["typescript", "javascript"],
-  "eslint.enable": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.stylelint": "explicit",
-    "source.fixAll.eslint": "explicit"
-  },
-
-  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "javascript.inlayHints.parameterNames.enabled": "literals",
-  "javascript.inlayHints.parameterTypes.enabled": true,
-  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "javascript.inlayHints.variableTypes.enabled": true,
-  "javascript.updateImportsOnFileMove.enabled": "always",
-
-  "typescript.inlayHints.enumMemberValues.enabled": true,
-  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.parameterNames.enabled": "literals",
-  "typescript.inlayHints.parameterTypes.enabled": true,
-  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true,
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "workbench.colorTheme": "Dark Modern"
 }

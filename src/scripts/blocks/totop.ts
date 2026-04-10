@@ -1,56 +1,50 @@
-/**
- * @name eventScrollToTop()
- * @description Function to launch the button to return to the top of the page
- */
-function eventScrollToTop(): void {
-  let flag = false // the visibility flag of the "up" button
-  const metka = 300 // the number of pixels of scrolling the page before displaying the "up" button
+// totop.ts
+// кнопка возврата на верх страницы
 
-  const arrowUp: HTMLDivElement | null = document.createElement('div') // the "up" button
-  arrowUp.classList.add('back-to-top')
-  const arrowUpSvg: string =
-    '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/></svg>'
-  arrowUp.innerHTML = arrowUpSvg
+/** svg код стрелки вверх */
+const arrow =
+  '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22V2M12 2L2 12M12 2L22 12" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+/** Инициализирует кнопку возврата на верх страницы */
+function initScrollToTop() {
+  const metka = 300
+  let isVisible = false
+
+  const arrowUp = document.createElement('div')
+  arrowUp.id = 'scrolltotop'
+  arrowUp.innerHTML = arrow
   document.body.append(arrowUp)
 
-  if (!arrowUp) {
-    console.log('The node ".back-to-top" is missing! ')
-  }
+  window.addEventListener(
+    'scroll',
+    () => {
+      const counter = window.scrollY
 
-  window.addEventListener('scroll', function () {
-    const counter = this.scrollY
-    if (counter > metka) {
-      arrowUp.classList.add('up')
-      arrowUp.classList.remove('down')
-      flag = true
-    }
-    if (counter <= metka && flag == true) {
-      arrowUp.classList.add('down')
-      arrowUp.classList.remove('up')
-      flag = false
-    }
-  })
+      if (counter > metka && !isVisible) {
+        arrowUp.classList.add('on')
+        arrowUp.classList.remove('down')
+        isVisible = true
+      } else if (counter <= metka && isVisible) {
+        arrowUp.classList.add('down')
+        arrowUp.classList.remove('on')
+        isVisible = false
+      }
+    },
+    { passive: true },
+  )
 
-  arrowUp.addEventListener('click', (e) => {
-    e.preventDefault()
+  arrowUp.addEventListener('click', (event) => {
+    event.preventDefault()
     window.scrollTo({
-      left: window.scrollX,
       top: 0,
       behavior: 'smooth',
     })
   })
 }
 
-// Sample use of the function:
-// Launching the scroll To Top button function after the DOM is fully loaded
-// and for screens with a viewport of more than 640px
-
+/** Запуск кнопки после полной загрузки DOM для экранов с viewport более 340px */
 document.addEventListener('DOMContentLoaded', () => {
-  const intViewportWidth = window.innerWidth // viwport X
-  if (intViewportWidth >= 640) {
-    eventScrollToTop()
+  if (window.innerWidth >= 340) {
+    initScrollToTop()
   }
 })
-
-// вариант экспорт функции eventScrollToTop
-// export { eventScrollToTop as default }

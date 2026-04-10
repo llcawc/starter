@@ -1,92 +1,97 @@
 /**
- * @файл scheme.js
- * @описание скрипт работы переключателя цветовых тем
- * @действие вставляет или убирает класс 'dark' в html элемент
- * или в атрибуте 'data-bs-theme' html элемента переключает 'light' и 'dark'
+ * scheme.ts
+ * • color theme switcher script
+ * adds or removes 'dark' class in html element
+ * or switches between 'light' and 'dark' in 'data-bs-theme' attribute of html element
  */
 
-function schemeSwitcher() {
-  // определяем тип цветовой темы
-  type ColorTheme = 'dark' | 'light' | 'system'
+type ColorTheme = 'dark' | 'light' | 'system'
 
-  // записать тему в локальное хранилище
+function schemeSwitcher() {
+  // store theme in local storage
   const setStoredTheme = (theme: ColorTheme) => localStorage.setItem('color-mode', theme)
-  // считать тему из локального хранилища
-  const getStoredTheme = () => localStorage.getItem('color-mode') as ColorTheme | null | undefined
-  // определяем функцию удаления записи ключа с темой
+  // read theme from local storage
+  const getStoredTheme = () => localStorage.getItem('color-mode') as ColorTheme | null
+  // define function to remove theme key
   const removeStoredTheme = () => localStorage.removeItem('color-mode')
 
-  // константа содержит ответ медиа запроса по наличию цветовой схемы дарк
+  // constant holds media query response for dark color scheme presence
   const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-  // Получить текущую цветовую тему: 'dark' | 'light'
-  const getCurrentTheme = (): 'dark' | 'light' => {
-    const storedTheme = getStoredTheme() ?? 'system'
-    return storedTheme === 'system' ? (darkModeMediaQuery.matches ? 'dark' : 'light') : storedTheme
+  // Get selected setting (including 'system')
+  const getPreferredTheme = (): ColorTheme => {
+    return getStoredTheme() ?? 'system'
   }
 
-  // Получить текущee представление системы
-  const getPrefferedTheme = () => {
-    const storedTheme = getStoredTheme() ?? 'system'
-    return storedTheme === 'system' ? 'system' : getCurrentTheme()
-  }
-
-  // Установить цветовую тему в атрибуте тега 'html'
+  // Set color theme in 'html' tag attribute
   const setTheme = (theme: ColorTheme) => {
-    theme = theme === 'system' ? (darkModeMediaQuery.matches ? 'dark' : 'light') : theme
-    // document.documentElement.classList.toggle('dark', theme === 'dark')
-    document.documentElement.setAttribute('data-bs-theme', theme)
+    const html = document.documentElement
+    const themeToApply = theme === 'system' ? (darkModeMediaQuery.matches ? 'dark' : 'light') : theme
+
+    html.classList.toggle('dark', themeToApply === 'dark')
+    html.setAttribute('data-bs-theme', themeToApply)
   }
 
-  // Отобразить переключение на пульте управления цветовыми темами
+  // get all theme switcher buttons on the page
+  const switcherRadios = document.querySelectorAll<HTMLElement>('.ui-radio')
+
+  // check if theme switcher buttons exist on the page
+  if (switcherRadios.length === 0) {
+    return
+  }
+
+  // Display switching on color theme control panel
   const showActiveTheme = (theme: ColorTheme) => {
-    const activeRadio = document.querySelector(`.ui-radio[data-ui-value=${theme}]`)
-    document.querySelectorAll('.ui-radio').forEach((elem) => {
+    const targetRadio = document.querySelector<HTMLElement>(`.ui-radio[data-ui-value="${theme}"]`)
+
+    if (!targetRadio) {
+      console.warn(`The node ".ui-radio[data-ui-value=${theme}]" is missing!`)
+      return
+    }
+
+    // reset all buttons
+    switcherRadios.forEach((elem) => {
       elem.removeAttribute('data-checked')
       elem.setAttribute('aria-checked', 'false')
       elem.setAttribute('tabindex', '-1')
     })
-    if (activeRadio) {
-      activeRadio.setAttribute('data-checked', 'true')
-      activeRadio.setAttribute('aria-checked', 'true')
-      activeRadio.setAttribute('tabindex', '0')
-    } else {
-      console.log(`The node ".ui-radio[data-ui-value=${theme}]" is missing! `)
-    }
+
+    // set active button
+    targetRadio.setAttribute('data-checked', 'true')
+    targetRadio.setAttribute('aria-checked', 'true')
+    targetRadio.setAttribute('tabindex', '0')
   }
 
-  // установить при первом запуске
-  showActiveTheme(getPrefferedTheme())
-  setTheme(getCurrentTheme())
+  // Initialization
+  const initialTheme = getPreferredTheme()
+  showActiveTheme(initialTheme)
+  setTheme(initialTheme)
 
-  // взять все кнопки переключателя тем на странице
-  const switcherRadios = document.querySelectorAll('.ui-radio')
-
-  // установка обработчика переключателя тем
-  ;[...switcherRadios].forEach((radio) => {
+  // set theme switcher handler
+  switcherRadios.forEach((radio) => {
     radio.addEventListener('click', () => {
-      let theme = radio.getAttribute('data-ui-value') as ColorTheme | null
-      if (!theme) {
-        theme = getPrefferedTheme()
-      }
-      showActiveTheme(theme)
-      setTheme(theme)
+      const theme = (radio.getAttribute('data-ui-value') as ColorTheme) || 'system'
+
       if (theme === 'system') {
         removeStoredTheme()
       } else {
         setStoredTheme(theme)
       }
+
+      showActiveTheme(theme)
+      setTheme(theme)
     })
   })
 
-  // установка обработчика смены тем в системе
+  // set system theme change handler
   darkModeMediaQuery.addEventListener('change', () => {
-    const theme = getCurrentTheme()
-    setTheme(theme)
+    const storedTheme = getStoredTheme()
+    if (!storedTheme || storedTheme === 'system') {
+      setTheme('system')
+    }
   })
 }
 
-// установка скрипта после полной загрузки страницы
+// run here
 window.addEventListener('DOMContentLoaded', schemeSwitcher)
-// вариант экспорт функции schemeSwitcher
-// export { schemeSwitcher as default }
+// export { schemeSwitcher }

@@ -1,30 +1,32 @@
 // gulpfile.js • frontend • starter • pasmurno by llcawc • https://github.com/llcawc
 
 // import modules
-import { pscss } from '@pasmurno/pscss'
-import serve from '@pasmurno/serve'
+import { env } from 'node:process'
+
+import { pscss, rename } from '@pasmurno/pscss'
+import { server } from '@pasmurno/serve'
 import { deleteAsync } from 'del'
 import { dest, parallel, series, src, watch } from 'gulp'
 import changed from 'gulp-changed'
-import pug from 'gulp-pug'
-import { env } from 'node:process'
+import gulpPug from 'gulp-pug'
 import psimage from 'psimage'
 import { tscom } from 'tscom'
+
 import data from './src/data/site.js'
 
 // server
-async function server() {
-  return await serve()
+async function browse() {
+  return await server()
 }
 
 // compile pug files
 function html() {
   const options = env.BUILD === 'production' ? { data } : { pretty: true, data }
-  return src('src/pages/*.pug').pipe(pug(options)).pipe(dest('dist'))
+  return src('src/pages/*.pug').pipe(gulpPug(options)).pipe(dest('dist'))
 }
 
 // sass compile
-function sass() {
+function style() {
   const options =
     env.BUILD === 'production'
       ? {
@@ -38,20 +40,35 @@ function sass() {
               './vendor/bootstrap/js/dist/dom/*.js',
               './vendor/bootstrap/js/dist/{alert,button,dropdown}.js',
             ],
-            safelist: [/show/, /fade/, /m-0/, /^alert.*/, /data-bs-theme/, /data-checked/, /back-to-top/, /overlay/],
+            safelist: [
+              /show/,
+              /fade/,
+              /m-0/,
+              /^alert.*/,
+              /data-bs-theme/,
+              /data-checked/,
+              /scrolltotop$/,
+              /on$/,
+              /down$/,
+              /overlay/,
+            ],
             keyframes: true,
             variables: true,
           },
         }
       : { minify: false }
-  return src('src/styles/*.sass', { sourcemaps: true })
+  return src('src/styles/*.sass', { sourcemaps: env.BUILD === 'production' ? false : true })
     .pipe(pscss(options))
+    .pipe(rename({ suffix: '.min' }))
     .pipe(dest('dist/assets/css', { sourcemaps: '.' }))
 }
 
 // scripts task
-function scripts() {
-  return src('src/scripts/main.ts').pipe(tscom()).pipe(dest('dist/assets/js'))
+function script() {
+  return src('src/scripts/main.ts')
+    .pipe(tscom())
+    .pipe(rename({ basename: 'script.min.js' }))
+    .pipe(dest('dist/assets/js'))
 }
 
 // images task
@@ -66,11 +83,11 @@ function images() {
 function fonts() {
   return src(
     [
-      'src/assets/fonts/Inter/*.woff*',
       'src/assets/fonts/bootstrap-icons/*.woff*',
+      'src/assets/fonts/Inter/*.woff*',
       'src/assets/fonts/JetBrains/*.woff*',
     ],
-    { encoding: false }
+    { encoding: false },
   ).pipe(dest('dist/assets/fonts'))
 }
 
@@ -80,16 +97,16 @@ function clean() {
 }
 
 // watch task
-function monitor() {
+function watcher() {
   watch('src/{data,includes,layouts,pages}/*.{pug,js}', html)
-  watch('src/scripts/**/*.*', scripts)
-  watch('src/styles/**/*.*', sass)
+  watch('src/scripts/**/*.*', script)
+  watch('src/styles/**/*.*', style)
   watch('src/assets/images/**/*.*', images)
   watch('src/assets/fonts/**/*.*', fonts)
 }
 
 // export
-export { clean, fonts, html, images, monitor, sass, scripts, server }
-export const assets = parallel(html, sass, scripts, fonts, images)
-export const dev = series(clean, assets, server, monitor)
+export { clean, fonts, html, images, watcher, style, script, browse }
+export const assets = parallel(html, style, script, fonts, images)
 export const build = series(clean, assets)
+export const dev = series(build, browse, watcher)

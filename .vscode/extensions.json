@@ -1,10 +1,15 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
     "EditorConfig.EditorConfig",
-    "dbaeumer.vscode-eslint",
-    "stylelint.vscode-stylelint",
-    "bradlc.vscode-tailwindcss",
-    "syler.sass-indented"
+    "hossaini.bootstrap-intellisense",
+    "pranaygp.vscode-css-peek",
+    "ecmel.vscode-html-css",
+    "christian-kohler.npm-intellisense",
+    "starbist.oklchanger",
+    "oxc.oxc-vscode",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "syler.sass-indented",
+    "bradlc.vscode-tailwindcss"
   ]
 }
