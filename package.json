@@ -1,6 +1,6 @@
 {
   "name": "starter",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "description": "starter template for frontend",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "build": "cross-env BUILD=production gulp build"
   },
   "devDependencies": {
-    "@pasmurno/pscss": "^0.0.8",
+    "@pasmurno/pscss": "^0.0.9",
     "@pasmurno/serve": "^0.0.6",
     "@types/bootstrap": "^5.2.10",
     "@types/gulp": "^4.0.18",
@@ -30,7 +30,7 @@
     "gulp-pug": "^5.0.0",
     "oxfmt": "^0.44.0",
     "oxlint": "^1.59.0",
-    "psimage": "^0.0.2",
+    "psimage": "^0.0.3",
     "tscom": "^0.0.9"
   }
 }

@@ -9,7 +9,7 @@ import { deleteAsync } from 'del'
 import { dest, parallel, series, src, watch } from 'gulp'
 import changed from 'gulp-changed'
 import gulpPug from 'gulp-pug'
-import psimage from 'psimage'
+import { psimage } from 'psimage'
 import { tscom } from 'tscom'
 
 import data from './src/data/site.js'
