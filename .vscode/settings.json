@@ -24,9 +24,11 @@
   "editor.glyphMargin": false,
   "editor.guides.bracketPairs": "active",
   "editor.bracketPairColorization.enabled": true,
+
   "html.format.wrapLineLength": 0,
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
+
   "js/ts.updateImportsOnFileMove.enabled": "always",
   "js/ts.inlayHints.parameterTypes.enabled": true,
   "js/ts.inlayHints.parameterNames.enabled": "literals",
@@ -34,7 +36,7 @@
   "js/ts.inlayHints.functionLikeReturnTypes.enabled": true,
   "js/ts.inlayHints.enumMemberValues.enabled": true,
   "js/ts.inlayHints.propertyDeclarationTypes.enabled": true,
-  "http.proxySupport": "off",
+
   "files.associations": {
     ".pcss": "scss",
     ".exclude": "properties",
@@ -55,17 +57,18 @@
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.fontFamily": "'Cascadia Code', Consolas, monospace",
-  "editor.formatOnSaveMode": "file",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // "editor.defaultFormatter": "oxc.oxc-vscode",
-  // "editor.formatOnSave": false,
+
   "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+
   "oxc.enable": true,
   "oxc.lint.run": "onSave",
   "editor.codeActionsOnSave": {
     "source.format.oxc": "always",
     "source.fixAll.oxc": "always"
   },
+
   "[pcss]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
@@ -166,7 +169,7 @@
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
     "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-    "package.json": "gulp*, post*, roll*, tail*, package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .babel*, .editorconfig, .stylelin*, biom*, .ox*"
+    "package.json": "gulp*, post*, roll*, tail*, package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .prettier*, prettier*, .babel*, .stylelin*, biom*, .ox*"
   },
   "chat.viewSessions.orientation": "stacked",
   "json.schemaDownload.trustedDomains": {
@@ -176,6 +179,5 @@
     "https://json.schemastore.org/": true,
     "https://json-schema.org/": true,
     "https://biomejs.dev/": true
-  },
-  "workbench.colorTheme": "Dark Modern"
+  }
 }

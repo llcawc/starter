@@ -75,7 +75,7 @@ function script() {
 function images() {
   return src(['src/assets/images/**/*.*'], { base: 'src/assets/images', encoding: false })
     .pipe(changed('dist/assets/images'))
-    .pipe(psimage())
+    .pipe(psimage({ verbose: true }))
     .pipe(dest('dist/assets/images'))
 }
 
